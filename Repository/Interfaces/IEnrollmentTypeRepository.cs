@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Repository
 {
-    interface IEnrollmentTypeRepository : IRepositoryBase<EnrollmentType>
+    public interface IEnrollmentTypeRepository : IRepositoryBase<EnrollmentType>
     {
     }
 }

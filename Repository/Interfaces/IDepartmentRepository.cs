@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Repository.Interfaces
 {
-    interface IDepartmentRepository : IRepositoryBase<Department>
+    public interface IDepartmentRepository : IRepositoryBase<Department>
     {
     }
 }

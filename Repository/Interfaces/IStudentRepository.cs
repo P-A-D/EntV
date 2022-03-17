@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Repository.Interfaces
 {
-    interface IStudentRepository : IRepositoryBase<Student>
+    public interface IStudentRepository : IRepositoryBase<Student>
     {
     }
 }
