@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using EntV.Data;
+using EntV.Models;
 using EntV.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,13 +23,22 @@ namespace EntV.Controllers
         // GET: EnrollmentTypesController
         public ActionResult Index()
         {
-            return View();
+            var enrollmentType = _repo.FindAll().ToList();
+            // The line below maps the data coming from the database to the view model
+            var data = _mapper.Map<List<EnrollmentType>, List<EnrollmentTypeViewModel>>(enrollmentType);
+            return View(data);
         }
 
         // GET: EnrollmentTypesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (!_repo.Exists(id))
+            {
+                return NotFound();
+            }
+            var enrollmentType = _repo.FindById(id);
+            var data = _mapper.Map<EnrollmentTypeViewModel>(enrollmentType);
+            return View(data);
         }
 
         // GET: EnrollmentTypesController/Create
@@ -39,58 +50,111 @@ namespace EntV.Controllers
         // POST: EnrollmentTypesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(EnrollmentTypeViewModel data)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(data);
+                }
+                var enrollmentType = _mapper.Map<EnrollmentType>(data);
+                var wasSuccessful = _repo.Create(enrollmentType);
+                if (!wasSuccessful)
+                {
+                    ModelState.AddModelError("", "Something went wrong...");
+                    return View(data);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Something went wrong...");
+                return View(data);
             }
         }
 
         // GET: EnrollmentTypesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (!_repo.Exists(id))
+            {
+                return NotFound();
+            }
+            var enrollmentType = _repo.FindById(id);
+            var data = _mapper.Map<EnrollmentTypeViewModel>(enrollmentType);
+            return View(data);
         }
 
         // POST: EnrollmentTypesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(EnrollmentTypeViewModel data)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(data);
+                }
+                var enrollmentType = _mapper.Map<EnrollmentType>(data);
+                var success = _repo.Update(enrollmentType);
+                if (!success)
+                {
+                    ModelState.AddModelError("", "Something went wrong");
+                    return View(data);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Something went wrong");
+                return View(data);
             }
         }
 
         // GET: EnrollmentTypesController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var enrollmentType = _repo.FindById(id);
+            if (enrollmentType == null)
+            {
+                return NotFound();
+            }
+            var success = _repo.Delete(enrollmentType);
+            if (!success)
+            {
+                ModelState.AddModelError("", "Something went wrong.");
+                return BadRequest();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: EnrollmentTypesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        ////This section of code is for making sure the user wants to delete this section
+        //// POST: EnrollmentTypesController/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(int id, EnrollmentTypeViewModel data)
+        //{
+        //    try
+        //    {
+        //        var enrollmentType = _repo.FindById(id);
+        //        if (enrollmentType == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        var success = _repo.Delete(enrollmentType);
+        //        if (!success)
+        //        {
+        //            ModelState.AddModelError("", "Something went wrong.");
+        //            return View(data);
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

@@ -10,12 +10,16 @@ namespace EntV.Models
     public class StudentCourseViewModel
     {
         // This view model is not used, since the StudentCourse table is not yet added to the database (Through the ApplicatinDbContext)
+        [Key]
+        [Display(Name = "Acquisition ID")]
         public int AcquisitionId { get; set; }
         [Required]
         public string Semester { get; set; }
         public StudentViewModel Student { get; set; }
+        [Display(Name = "Student ID")]
         public int StudentId { get; set; }
         public CourseViewModel Course { get; set; }
+        [Display(Name = "Course ID")]
         public int CourseId { get; set; }
         // The two lines below allow for getting the list of enrollment types and departments and provide them to the user to select from
         public IEnumerable<SelectListItem> Students { get; set; }

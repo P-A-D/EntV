@@ -26,6 +26,11 @@ namespace EntV.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.Departments.Any(q => q.DepartmentId == id);
+        }
+
         public ICollection<Department> FindAll()
         {
             return _db.Departments.ToList();

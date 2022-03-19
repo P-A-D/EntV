@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EntV.Models;
 
 namespace EntV.Data
 {
@@ -16,6 +17,7 @@ namespace EntV.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<EntV.Models.EnrollmentTypeViewModel> EnrollmentTypeViewModel { get; set; }
         //public DbSet<StudentCourse> StudentCourses { get; set; }
     }
 }

@@ -26,6 +26,11 @@ namespace EntV.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.Students.Any(q => q.StudentId == id);
+        }
+
         public ICollection<Student> FindAll()
         {
             return _db.Students.ToList();

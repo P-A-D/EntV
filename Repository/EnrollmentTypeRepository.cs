@@ -26,6 +26,11 @@ namespace EntV.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.EnrollmentTypes.Any(q => q.EnrollmentTypeId == id);
+        }
+
         public ICollection<EnrollmentType> FindAll()
         {
             return _db.EnrollmentTypes.ToList();

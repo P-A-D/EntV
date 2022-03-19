@@ -26,6 +26,14 @@ namespace EntV.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            //return _db.Courses.Any(); // This line of code checks to see if the table is empty or not
+            // The line of code below does the following (it is a lambda expression): Consider an object of Courses table named q.
+            // Return this object/list of objects whenever they have a course id identical to the given id.
+            return _db.Courses.Any(q => q.CourseId == id);
+        }
+
         public ICollection<Course> FindAll()
         {
             return _db.Courses.ToList();
