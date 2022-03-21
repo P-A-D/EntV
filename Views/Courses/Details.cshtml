@@ -1,0 +1,52 @@
+﻿@model EntV.Models.CourseViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<table id="dataTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.CourseId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.UnitCount)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DepartmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DepartmentName)
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.CourseId">Edit</a> |
+    <a asp-action="Index" class="btn btn-outline-dark">Back to List</a>
+</div>

@@ -8,5 +8,6 @@ namespace EntV.Repository.Interfaces
 {
     public interface IStudentRepository : IRepositoryBase<Student>
     {
+        int Count(string yearNumber, int departmentId);
     }
 }

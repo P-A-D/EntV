@@ -11,6 +11,12 @@
     <Compile Remove="Data\Migrations\20220309181052_AddStudentTable.Designer.cs" />
     <Compile Remove="Data\Migrations\20220309184551_AddStudentToDb1.cs" />
     <Compile Remove="Data\Migrations\20220309184551_AddStudentToDb1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220321144502_1.cs" />
+    <Compile Remove="Data\Migrations\20220321144502_1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220321144758_1.cs" />
+    <Compile Remove="Data\Migrations\20220321144758_1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220321154236_1.cs" />
+    <Compile Remove="Data\Migrations\20220321154236_1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

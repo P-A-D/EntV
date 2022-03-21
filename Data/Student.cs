@@ -12,7 +12,7 @@ namespace EntV.Data
     {
         [Required]
         [Index(nameof(StudentId), IsUnique = true)]
-        public int StudentId { get; set; }
+        public string StudentId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

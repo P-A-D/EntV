@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.EnrollmentTypeId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.EnrollmentTypeName)
             </th>
             <th>Actions</th>
@@ -21,16 +24,19 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnrollmentTypeName)
-                </td>
-                <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.EnrollmentTypeId"><i class="fa fa-solid fa-pen"></i> Edit</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EnrollmentTypeId"><i class="fa fa-solid fa-circle-info"></i> Details</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EnrollmentTypeId" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-solid fa-trash"></i> Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentTypeName)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.EnrollmentTypeId"><i class="fa fa-solid fa-pen"></i> Edit</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EnrollmentTypeId"><i class="fa fa-solid fa-circle-info"></i> Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EnrollmentTypeId" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-solid fa-trash"></i> Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -28,7 +28,8 @@ namespace EntV.Repository
 
         public bool Exists(int id)
         {
-            return _db.Students.Any(q => q.StudentId == id);
+            // Check to see if the taken argument can be taken as a string rather than and int.
+            return _db.Students.Any(q => q.StudentId.Equals(id.ToString()));
         }
 
         public ICollection<Student> FindAll()
@@ -50,6 +51,11 @@ namespace EntV.Repository
         {
             _db.Students.Update(entity);
             return Save();
+        }
+        public int Count(string yearNumber, int departmentId)
+        {
+            int numberOfStudentsInOneYear = _db.Students.Where(record => record.EntranceDate == Convert.ToString(yearNumber) & record.DepartmentId == departmentId).Count();
+            return numberOfStudentsInOneYear;
         }
     }
 }
