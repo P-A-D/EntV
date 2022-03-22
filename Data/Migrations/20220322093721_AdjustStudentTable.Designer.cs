@@ -4,14 +4,16 @@ using EntV.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EntV.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220322093721_AdjustStudentTable")]
+    partial class AdjustStudentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,35 +129,6 @@ namespace EntV.Data.Migrations
                     b.HasIndex("EnrollmentTypeId");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("EntV.Data.StudentCourse", b =>
-                {
-                    b.Property<int>("AcquisitionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AcquisitionId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("StudentCourses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -380,19 +353,6 @@ namespace EntV.Data.Migrations
                         .HasForeignKey("EnrollmentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EntV.Data.StudentCourse", b =>
-                {
-                    b.HasOne("EntV.Data.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntV.Data.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("Id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

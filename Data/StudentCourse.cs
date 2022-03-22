@@ -16,11 +16,13 @@ namespace EntV.Data
         public int AcquisitionId { get; set; }
         [Required]
         public string Semester { get; set; }
-        [ForeignKey("StudentId")]
+        [ForeignKey("Id")]
         public Student Student { get; set; }
+        [Required]
         public int StudentId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
+        [Required]
         public int CourseId { get; set; }
     }
 }

@@ -28,8 +28,7 @@ namespace EntV.Repository
 
         public bool Exists(int id)
         {
-            // Check to see if the taken argument can be taken as a string rather than and int.
-            return _db.Students.Any(q => q.StudentId.Equals(id.ToString()));
+            return _db.Students.Any(q => q.Id == id);
         }
 
         public ICollection<Student> FindAll()

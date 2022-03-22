@@ -17,6 +17,8 @@
     <Compile Remove="Data\Migrations\20220321144758_1.Designer.cs" />
     <Compile Remove="Data\Migrations\20220321154236_1.cs" />
     <Compile Remove="Data\Migrations\20220321154236_1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220322105428_AddStudentCourseTableToDb.cs" />
+    <Compile Remove="Data\Migrations\20220322105428_AddStudentCourseTableToDb.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +26,8 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.22" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.22" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">
       <PrivateAssets>all</PrivateAssets>

@@ -14,7 +14,9 @@ namespace EntV.Models
         [Display(Name = "Student ID")]
         public string StudentId { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
         [Required]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
@@ -41,7 +43,7 @@ namespace EntV.Models
         public string DepartmentName { get; set; }
 
         // The two lines below allow for getting the list of enrollment types and departments and provide them to the user to select from
-        public IEnumerable<SelectListItem> EnrollmentTypes { get; set; }
-        public IEnumerable<SelectListItem> Departments { get; set; }
+        public IEnumerable<EnrollmentTypeViewModel> EnrollmentTypes { get; set; }
+        public IEnumerable<DepartmentViewModel> Departments { get; set; }
     }
 }

@@ -8,17 +8,24 @@ using System.Threading.Tasks;
 
 namespace EntV.Data
 {
-    public class Student : IdentityUser
+    public class Student
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
-        [Index(nameof(StudentId), IsUnique = true)]
         public string StudentId { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
         [Required]
         public string BirthDate { get; set; }
         [Required]
         public string MelliCode { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
+        [Required]
+        public string Email { get; set; }
         [Required]
         public string EntranceDate { get; set; }
         [ForeignKey("EnrollmentTypeId")]

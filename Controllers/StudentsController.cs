@@ -43,6 +43,10 @@ namespace EntV.Controllers
             }
             var student = _repo.FindById(id);
             var data = _mapper.Map<StudentViewModel>(student);
+            var depName = _depRepo.FindById(data.DepartmentId);
+            var enrType = _enRepo.FindById(data.EnrollmentTypeId);
+            data.DepartmentName = depName.DepartmentName;
+            data.EnrollmentTypeName = enrType.EnrollmentTypeName;
             return View(data);
         }
 
@@ -64,8 +68,8 @@ namespace EntV.Controllers
                     return View(data);
                 }
                 string departmentIdHolder = data.DepartmentId.ToString().PadLeft(2, '0');
-                int studentCount = _repo.Count(data.EntranceDate, data.DepartmentId);
-                data.StudentId = data.EntranceDate + departmentIdHolder + studentCount.ToString().PadLeft(3, '0');
+                int studentCount = _repo.Count(data.EntranceDate, data.DepartmentId) + 1;
+                data.StudentId = data.EntranceDate.PadLeft(2, '0') + departmentIdHolder + studentCount.ToString().PadLeft(3, '0');
                 var student = _mapper.Map<Student>(data);
                 // Cannot add the student object into the database due to non-automatic id generation. Fix this.
                 var wasSuccessful = _repo.Create(student);
@@ -105,7 +109,7 @@ namespace EntV.Controllers
                 if (!ModelState.IsValid)
                 {
                     return View(data);
-                }
+                }                
                 var student = _mapper.Map<Student>(data);
                 var success = _repo.Update(student);
                 if (!success)
