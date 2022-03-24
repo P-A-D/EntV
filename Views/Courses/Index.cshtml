@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<EntV.Models.CourseViewModel>
 
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Courses</h1>
-
 <p>
     <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus fa-bold"></i> Create New</a>
 </p>
@@ -47,10 +47,11 @@
     </tbody>
 </table>
 
+
 @section Scripts{
     <script>
-    $(document).ready(function () {
-        $('#dataTable').DataTable();
-    });
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
     </script>
 }

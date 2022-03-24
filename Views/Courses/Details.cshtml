@@ -1,11 +1,11 @@
 ﻿@model EntV.Models.CourseViewModel
 
+
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
-
 <table id="dataTable" class="table">
     <thead>
         <tr>
@@ -50,3 +50,5 @@
     <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.CourseId">Edit</a> |
     <a asp-action="Index" class="btn btn-outline-dark">Back to List</a>
 </div>
+}
+

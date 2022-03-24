@@ -2,6 +2,7 @@
 using EntV.Data;
 using EntV.Models;
 using EntV.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class EnrollmentTypesController : Controller
     {
         private readonly IEnrollmentTypeRepository _repo;

@@ -2,6 +2,7 @@
 using EntV.Data;
 using EntV.Models;
 using EntV.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Controllers
 {
+    [Authorize(Roles = "Student, Education")]
     public class CoursesController : Controller
     {
         private readonly ICourseRepository _repo;
