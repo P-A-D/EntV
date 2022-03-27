@@ -13,6 +13,7 @@ namespace EntV.Data
         [Key]
         public int Id { get; set; }
         [Required]
+        [StringLength(7)]
         public string StudentId { get; set; }
         [Required]
         public string FirstName { get; set; }
@@ -21,10 +22,12 @@ namespace EntV.Data
         [Required]
         public string BirthDate { get; set; }
         [Required]
+        [StringLength(10)]
         public string MelliCode { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string EntranceDate { get; set; }

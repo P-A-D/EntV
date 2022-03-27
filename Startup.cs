@@ -42,7 +42,7 @@ namespace EntV
             // AutoMapper references
             services.AddAutoMapper(typeof(AutoMapClassToVM));
             //services.AddScoped<IStudentCourseRepository, StudentCourseRepository>(); // Add This when StudentCourse table is added to db
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Member>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
@@ -51,7 +51,7 @@ namespace EntV
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+            UserManager<Member> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {

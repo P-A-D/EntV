@@ -17,6 +17,12 @@ namespace EntV.Controllers
     {
         private readonly IEnrollmentTypeRepository _repo;
         private readonly IMapper _mapper;
+        //// the line below could be used in order to gain access to the user table, roles, and more. Note that it must be initiallized in the
+        //// constructor of the controller.
+        //// for example, use _userManager.GetUsersInRoleAsync("Administrator").Result returns an enumerable object containing all the users with
+        //// the role "Administrator". Check what difference the .Result attribute does.
+        // private readonly UserManager<IdentityUser> _userManager; //Change the IdentityUser to Member since Member has the data in the latter and 
+        // then some.
         public EnrollmentTypesController(IEnrollmentTypeRepository repo, IMapper mapper)
         {
             _repo = repo;

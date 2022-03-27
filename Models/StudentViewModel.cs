@@ -21,15 +21,18 @@ namespace EntV.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         [Display(Name = "Birth Date")]
         public string BirthDate { get; set; }
         [Required]
+        [StringLength(10, ErrorMessage ="Please enter a valid Melli code.")]
         [Display(Name = "Melli Code")]
         public string MelliCode { get; set; }
         [Required]
         [Display(Name = "Entrance Date")]
+        [StringLength(2, ErrorMessage ="The entrance date has to have 2 digits.")]
         public string EntranceDate { get; set; }
         public EnrollmentTypeViewModel EnrollmentType { get; set; }
         [Display(Name = "Enrollment Type ID")]

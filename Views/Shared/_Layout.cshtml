@@ -1,6 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+﻿@using EntV.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Member> SignInManager
+@inject UserManager<Member> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +41,7 @@
                                         Tables
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" asp-controller="Members" asp-action="Index">Members</a>
                                         <a class="dropdown-item" asp-controller="Courses" asp-action="Index">Courses</a>
                                         <a class="dropdown-item" asp-controller="Students" asp-action="Index">Students</a>
                                         <a class="dropdown-item" asp-controller="Departments" asp-action="Index">Departments</a>

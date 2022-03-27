@@ -19,12 +19,17 @@
     <Compile Remove="Data\Migrations\20220321154236_1.Designer.cs" />
     <Compile Remove="Data\Migrations\20220322105428_AddStudentCourseTableToDb.cs" />
     <Compile Remove="Data\Migrations\20220322105428_AddStudentCourseTableToDb.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220325193047_ApplyingConstraintsOnStudentTable.cs" />
+    <Compile Remove="Data\Migrations\20220325193047_ApplyingConstraintsOnStudentTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220325194104_AddingConstraintsOnStudentCourseTableasd.cs" />
+    <Compile Remove="Data\Migrations\20220325194104_AddingConstraintsOnStudentCourseTableasd.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220327011436_hi.cs" />
+    <Compile Remove="Data\Migrations\20220327011436_hi.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.22" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />

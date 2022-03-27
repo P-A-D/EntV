@@ -15,6 +15,7 @@ namespace EntV.Data
         [Key]
         public int AcquisitionId { get; set; }
         [Required]
+        [StringLength(2)]
         public string Semester { get; set; }
         [ForeignKey("Id")]
         public Student Student { get; set; }

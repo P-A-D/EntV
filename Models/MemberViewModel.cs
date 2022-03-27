@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EntV.Data
+namespace EntV.Models
 {
-    // This class is meant for the authenticated users that work at the educational department with enough privileges to change student info.
-    public class Member : IdentityUser
+    public class MemberViewModel
     {
+        [Key]
+        public string Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -17,8 +17,12 @@ namespace EntV.Data
         [Required]
         [StringLength(10)]
         public string MelliCode { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime JoinDate { get; set; }
-
     }
 }

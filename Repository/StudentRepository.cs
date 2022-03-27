@@ -53,7 +53,7 @@ namespace EntV.Repository
         }
         public int Count(string yearNumber, int departmentId)
         {
-            int numberOfStudentsInOneYear = _db.Students.Where(record => record.EntranceDate == Convert.ToString(yearNumber) & record.DepartmentId == departmentId).Count();
+            int numberOfStudentsInOneYear = _db.Students.Where(record => record.EntranceDate == Convert.ToString(yearNumber) && record.DepartmentId == departmentId).Count();
             return numberOfStudentsInOneYear;
         }
     }
