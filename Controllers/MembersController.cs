@@ -173,18 +173,41 @@ namespace EntV.Controllers
         }
 
         // GET: MembersController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            var member = _userManager.FindByIdAsync(id).Result;
+            if (member == null)
+            {
+                return NotFound();
+            }
+            var success = _userManager.DeleteAsync(member).Result.Succeeded;
+            if (!success)
+            {
+                ModelState.AddModelError("", "Could not delete user.");
+                return View(Edit(id));
+            }
+            return RedirectToAction(nameof(Index));
         }
 
+        //This section of code is for making sure the user wants to delete this section
         // POST: MembersController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(MemberViewModel data)
         {
             try
             {
+                var member = _userManager.FindByIdAsync(data.Id).Result;
+                if (member == null)
+                {
+                    return NotFound();
+                }
+                var success = _userManager.DeleteAsync(member).Result.Succeeded;
+                if (!success)
+                {
+                    ModelState.AddModelError("", "Could not delete user.");
+                    return View(data);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
