@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Controllers
 {
-    [Authorize(Roles = "Student, Education")]
+    [Authorize(Roles = "Student, Education, Administrator")]
     public class CoursesController : Controller
     {
         private readonly ICourseRepository _repo;

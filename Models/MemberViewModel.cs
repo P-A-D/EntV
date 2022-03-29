@@ -24,5 +24,8 @@ namespace EntV.Models
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime JoinDate { get; set; }
+        public string Roles { get; set; }
+        public string RoleIds { get; set; }
+
     }
 }
