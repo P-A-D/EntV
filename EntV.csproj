@@ -25,6 +25,8 @@
     <Compile Remove="Data\Migrations\20220325194104_AddingConstraintsOnStudentCourseTableasd.Designer.cs" />
     <Compile Remove="Data\Migrations\20220327011436_hi.cs" />
     <Compile Remove="Data\Migrations\20220327011436_hi.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220330131524_temp.cs" />
+    <Compile Remove="Data\Migrations\20220330131524_temp.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
