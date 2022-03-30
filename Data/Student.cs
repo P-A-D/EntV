@@ -30,6 +30,7 @@ namespace EntV.Data
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [StringLength(2)]
         public string EntranceDate { get; set; }
         [ForeignKey("EnrollmentTypeId")]
         public EnrollmentType EnrollmentType { get; set; }

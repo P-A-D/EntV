@@ -45,17 +45,29 @@ namespace EntV.Controllers
             }
             var student = _repo.FindById(id);
             var data = _mapper.Map<StudentViewModel>(student);
-            var depName = _depRepo.FindById(data.DepartmentId);
-            var enrType = _enRepo.FindById(data.EnrollmentTypeId);
-            data.DepartmentName = depName.DepartmentName;
-            data.EnrollmentTypeName = enrType.EnrollmentTypeName;
             return View(data);
         }
 
         // GET: StudentsController/Create
         public ActionResult Create()
         {
-            return View();
+            var deps = _depRepo.FindAll().ToList();
+            var ents = _enRepo.FindAll().ToList();
+            // The code below is provided for the creation of drodown lists. It has not yet been implemented in the view. fix it.
+            List<DepartmentViewModel> departments = new List<DepartmentViewModel> { };
+            List<EnrollmentTypeViewModel> enrollmentTypes = new List<EnrollmentTypeViewModel> { };
+            foreach(var dep in deps)
+            {
+                departments.Add(_mapper.Map<DepartmentViewModel>(dep));
+            }
+            foreach(var ent in ents)
+            {
+                enrollmentTypes.Add(_mapper.Map<EnrollmentTypeViewModel>(ent));
+            }
+            var data = new StudentViewModel { };
+            data.Departments = departments;
+            data.EnrollmentTypes = enrollmentTypes;
+            return View(data);
         }
 
         // POST: StudentsController/Create
@@ -73,6 +85,7 @@ namespace EntV.Controllers
                 int studentCount = _repo.Count(data.EntranceDate, data.DepartmentId) + 1;
                 data.StudentId = data.EntranceDate.PadLeft(2, '0') + departmentIdHolder + studentCount.ToString().PadLeft(3, '0');
                 var student = _mapper.Map<Student>(data);
+                student.EntranceDate = data.EntranceDate.PadLeft(2, '0');
                 // Cannot add the student object into the database due to non-automatic id generation. Fix this.
                 var wasSuccessful = _repo.Create(student);
                 if (!wasSuccessful)
@@ -113,6 +126,7 @@ namespace EntV.Controllers
                     return View(data);
                 }                
                 var student = _mapper.Map<Student>(data);
+                student.EntranceDate = student.EntranceDate.PadLeft(2, '0');
                 var success = _repo.Update(student);
                 if (!success)
                 {

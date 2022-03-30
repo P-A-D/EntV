@@ -1,5 +1,6 @@
 ﻿using EntV.Data;
 using EntV.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,12 +34,12 @@ namespace EntV.Repository
 
         public ICollection<Student> FindAll()
         {
-            return _db.Students.ToList();
+            return _db.Students.Include(q => q.EnrollmentType).Include(q => q.Department).ToList();
         }
 
         public Student FindById(int id)
         {
-            return _db.Students.Find(id);
+            return _db.Students.Include(q => q.EnrollmentType).Include(q => q.Department).FirstOrDefault(q => q.Id == id);
         }
 
         public bool Save()

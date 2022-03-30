@@ -72,7 +72,7 @@ namespace EntV
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Seeding the default roles and user: Administrator and admin.
+            // Seeding the default roles and user: Administrator, Student, and Education.
             SeedData.Seed(userManager, roleManager);
 
             app.UseEndpoints(endpoints =>

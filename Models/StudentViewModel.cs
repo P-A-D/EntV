@@ -46,7 +46,7 @@ namespace EntV.Models
         public string DepartmentName { get; set; }
 
         // The two lines below allow for getting the list of enrollment types and departments and provide them to the user to select from
-        public IEnumerable<EnrollmentTypeViewModel> EnrollmentTypes { get; set; }
-        public IEnumerable<DepartmentViewModel> Departments { get; set; }
+        public List<EnrollmentTypeViewModel> EnrollmentTypes { get; set; }
+        public List<DepartmentViewModel> Departments { get; set; }
     }
 }
