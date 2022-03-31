@@ -6,6 +6,7 @@ using EntV.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,20 +55,18 @@ namespace EntV.Controllers
             var deps = _depRepo.FindAll().ToList();
             var ents = _enRepo.FindAll().ToList();
             // The code below is provided for the creation of drodown lists. It has not yet been implemented in the view. fix it.
-            List<DepartmentViewModel> departments = new List<DepartmentViewModel> { };
-            List<EnrollmentTypeViewModel> enrollmentTypes = new List<EnrollmentTypeViewModel> { };
-            foreach(var dep in deps)
+            var departments = deps.Select(q => new SelectListItem
             {
-                departments.Add(_mapper.Map<DepartmentViewModel>(dep));
-            }
-            foreach(var ent in ents)
+                Text = q.DepartmentName,
+                Value = q.DepartmentId.ToString()
+            });
+            var enrollments = ents.Select(q => new SelectListItem
             {
-                enrollmentTypes.Add(_mapper.Map<EnrollmentTypeViewModel>(ent));
-            }
-            var data = new StudentViewModel { };
-            data.Departments = departments;
-            data.EnrollmentTypes = enrollmentTypes;
-            return View(data);
+                Text = q.EnrollmentTypeName,
+                Value = q.EnrollmentTypeId.ToString()
+            });
+            var model = new AddOrEditStudentViewModel { Departments = departments, EnrollmentTypes = enrollments };
+            return View(model);
         }
 
         // POST: StudentsController/Create
@@ -110,21 +109,36 @@ namespace EntV.Controllers
                 return NotFound();
             }
             var student = _repo.FindById(id);
-            var data = _mapper.Map<StudentViewModel>(student);
+            var data = _mapper.Map<AddOrEditStudentViewModel>(student);
+            var deps = _depRepo.FindAll();
+            var ents = _enRepo.FindAll();
+            var departments = deps.Select(q => new SelectListItem
+            {
+                Text = q.DepartmentName,
+                Value = q.DepartmentId.ToString()
+            });
+            var enrollments = ents.Select(q => new SelectListItem
+            {
+                Text = q.EnrollmentTypeName,
+                Value = q.EnrollmentTypeId.ToString()
+            });
+            data.Departments = departments;
+            data.EnrollmentTypes = enrollments;
             return View(data);
         }
 
         // POST: StudentsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(StudentViewModel data)
+        public ActionResult Edit(AddOrEditStudentViewModel data)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
                     return View(data);
-                }                
+                }
+
                 var student = _mapper.Map<Student>(data);
                 student.EntranceDate = student.EntranceDate.PadLeft(2, '0');
                 var success = _repo.Update(student);

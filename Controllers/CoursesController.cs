@@ -5,6 +5,7 @@ using EntV.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,12 @@ namespace EntV.Controllers
     public class CoursesController : Controller
     {
         private readonly ICourseRepository _repo;
-        private readonly IDepartmentRepository _fkrepo;
+        private readonly IDepartmentRepository _depRepo;
         private readonly IMapper _mapper;
-        public CoursesController(ICourseRepository repo, IDepartmentRepository fkrepo, IMapper mapper)
+        public CoursesController(ICourseRepository repo, IDepartmentRepository depRepo, IMapper mapper)
         {
             _repo = repo;
-            _fkrepo = fkrepo;
+            _depRepo = depRepo;
             _mapper = mapper;
         }
         // GET: CoursesController
@@ -41,7 +42,7 @@ namespace EntV.Controllers
                 return NotFound();
             }
             var course = _repo.FindById(id);
-            var fkData = _fkrepo.FindById(course.DepartmentId);
+            var fkData = _depRepo.FindById(course.DepartmentId);
             //var fkDataVM = _mapper.Map<DepartmentViewModel>(fkData);
             var data = _mapper.Map<CourseViewModel>(course);
             data.DepartmentName = fkData.DepartmentName;
@@ -51,7 +52,14 @@ namespace EntV.Controllers
         // GET: CoursesController/Create
         public ActionResult Create()
         {
-            return View();
+            var deps = _depRepo.FindAll();
+            var departments = deps.Select(q => new SelectListItem
+            {
+                Text = q.DepartmentName,
+                Value = q.DepartmentId.ToString()
+            });
+            var model = new CourseViewModel { Departments = departments };
+            return View(model);
         }
 
         // POST: CoursesController/Create
@@ -90,6 +98,13 @@ namespace EntV.Controllers
             }
             var course = _repo.FindById(id);
             var data = _mapper.Map<CourseViewModel>(course);
+            var deps = _depRepo.FindAll();
+            var departments = deps.Select(q => new SelectListItem
+            {
+                Text = q.DepartmentName,
+                Value = q.DepartmentId.ToString()
+            });
+            data.Departments = departments;
             return View(data);
         }
 

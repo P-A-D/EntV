@@ -1,0 +1,2 @@
+- In order to get the current logged in user's data, use the line below:
+var member = _usermanager.GetUserAsync(User).Result;

@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.UnitCount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DepartmentId)
+                @Html.DisplayNameFor(model => model.DepartmentName)
             </th>
             <th>Actions</th>
         </tr>
@@ -35,7 +35,7 @@
                     @Html.DisplayFor(modelItem => item.UnitCount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DepartmentId)
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CourseId"><i class="fa fa-solid fa-pen"></i> Edit</a> |

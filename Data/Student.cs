@@ -20,7 +20,7 @@ namespace EntV.Data
         [Required]
         public string LastName { get; set; }
         [Required]
-        public string BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         [Required]
         [StringLength(10)]
         public string MelliCode { get; set; }

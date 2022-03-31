@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Models
 {
-    public class StudentViewModel
+    public class AddOrEditStudentViewModel
     {
         [Key]
         public int Id { get; set; }
@@ -27,26 +27,20 @@ namespace EntV.Models
         [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
         [Required]
-        [StringLength(10, ErrorMessage ="Please enter a valid Melli code.")]
+        [StringLength(10, ErrorMessage = "Please enter a valid Melli code.")]
         [Display(Name = "Melli Code")]
         public string MelliCode { get; set; }
         [Required]
         [Display(Name = "Entrance Date")]
-        [StringLength(2, ErrorMessage ="The entrance date has to have 2 digits.")]
+        [StringLength(2, ErrorMessage = "The entrance date has to have 2 digits.")]
         public string EntranceDate { get; set; }
-        public EnrollmentTypeViewModel EnrollmentType { get; set; }
-        [Display(Name = "Enrollment Type ID")]
+        [Required(ErrorMessage = "Please select an enrollment type")]
         public int EnrollmentTypeId { get; set; }
-        [Display(Name = "Enrollment Type")]
-        public string EnrollmentTypeName { get; set; }
-        public DepartmentViewModel Department { get; set; }
-        [Display(Name = "Department ID")]
+        [Required(ErrorMessage ="Please select a department")]
         public int DepartmentId { get; set; }
         [Display(Name = "Department Name")]
-        public string DepartmentName { get; set; }
-
-        // The two lines below allow for getting the list of enrollment types and departments and provide them to the user to select from
-        public List<EnrollmentTypeViewModel> EnrollmentTypes { get; set; }
-        public List<DepartmentViewModel> Departments { get; set; }
+        public IEnumerable<SelectListItem> Departments { get; set; }
+        [Display(Name = "Enrollment Type")]
+        public IEnumerable<SelectListItem> EnrollmentTypes { get; set; }
     }
 }

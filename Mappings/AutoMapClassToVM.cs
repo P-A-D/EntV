@@ -16,6 +16,7 @@ namespace EntV.Mappings
             CreateMap<Department, DepartmentViewModel>().ReverseMap();
             CreateMap<EnrollmentType, EnrollmentTypeViewModel>().ReverseMap();
             CreateMap<Student, StudentViewModel>().ReverseMap();
+            CreateMap<Student, AddOrEditStudentViewModel>().ReverseMap();
             CreateMap<Member, MemberViewModel>().ReverseMap();
             //CreateMap<StudentCourse, StudentCourseViewModel>().ReverseMap();
         }

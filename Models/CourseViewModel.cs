@@ -21,7 +21,6 @@ namespace EntV.Models
         public int UnitCount { get; set; }
         public DepartmentViewModel Department { get; set; }
         [Display(Name = "Department ID")]
-        [ForeignKey("DepartmentId")]
         public int DepartmentId { get; set; }
         [Display(Name = " Deparment Name")]
         public string DepartmentName { get; set; }
