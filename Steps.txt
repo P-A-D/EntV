@@ -1,0 +1,24 @@
+Steps to take:
+1-Create DataModels (They will be the classes defining the database).
+	-Instantiate them in the ApplicationDbContext class with this format: 
+	public DbSet<DataModelName> TableNameInDatabase {get; set;}
+	-After addition of each DataModel to ApplicationDbContext, use Add-Migration MigrationName in the nuget package manager and then Update-Database to add the tables to the database.
+2- Configure Repositories:
+	-Create IRepositoryBase interface. 
+	-Create a repository interface for each data class/model. 
+	-Create a repository class for each data class/model interface. Each class implements the crud functions defined in the IRepositoryBase interface.
+	-Add references to repositories to startup.cs class. Use this format for adding:
+	services.AddScoped<IClassNameRepository, ClassNameRepository>();
+	Add this line for all data model classes.
+	Create ViewModels for each data model. ViewModels are the data types passed to views.
+4- Configure AutoMapper:
+	-Create a folder named mappings and within it, a class named Maps.cs.
+	-Map each data model to its corresponding view model with this format:
+	CreateMap<DataModel, DataModelVM>().ReverseMap();
+	Note That .ReverseMap() allows for the bidirectional mapping of data.
+5- Set up and configure controllers: Initialize objects for data manipulation:
+	private readonly IMapper _mapperName;
+	privare readonly IDataClassRepository _repo;
+	-Create the corresponding constructor:
+	public CNameController: Controller(IDataClassRepository _repo, IMapper mapper){_repo = repo; 	_mapper = mapper;}
+
