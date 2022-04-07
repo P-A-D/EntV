@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator, Education")]
     public class EnrollmentTypesController : Controller
     {
         private readonly IEnrollmentTypeRepository _repo;
@@ -50,6 +50,7 @@ namespace EntV.Controllers
         }
 
         // GET: EnrollmentTypesController/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -58,6 +59,7 @@ namespace EntV.Controllers
         // POST: EnrollmentTypesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create(EnrollmentTypeViewModel data)
         {
             try
@@ -83,6 +85,7 @@ namespace EntV.Controllers
         }
 
         // GET: EnrollmentTypesController/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
             if (!_repo.Exists(id))
@@ -97,6 +100,7 @@ namespace EntV.Controllers
         // POST: EnrollmentTypesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(EnrollmentTypeViewModel data)
         {
             try
@@ -122,6 +126,7 @@ namespace EntV.Controllers
         }
 
         // GET: EnrollmentTypesController/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {
             var enrollmentType = _repo.FindById(id);

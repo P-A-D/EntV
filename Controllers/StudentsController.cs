@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator, Education")]
     public class StudentsController : Controller
     {
         private readonly IStudentRepository _repo;

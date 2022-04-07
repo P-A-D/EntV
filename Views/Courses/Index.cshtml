@@ -1,14 +1,24 @@
 ﻿@model IEnumerable<EntV.Models.CourseViewModel>
-
+@using EntV.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Member> SignInManager
+@inject UserManager<Member> UserManager
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Courses</h1>
-<p>
-    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus fa-bold"></i> Create New</a>
-</p>
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (User.IsInRole("Administrator") || User.IsInRole("Education"))
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus fa-bold"></i> Create New</a>
+        </p>
+    }
+}
+
 <table id="dataTable" class="table">
     <thead>
         <tr>
@@ -38,9 +48,20 @@
                     @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CourseId"><i class="fa fa-solid fa-pen"></i> Edit</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.CourseId"><i class="fa fa-solid fa-circle-info"></i> Details</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CourseId" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-solid fa-trash"></i> Delete</a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Education"))
+                        {
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CourseId"><i class="fa fa-solid fa-pen"></i> Edit</a><span> |</span>
+                            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.CourseId"><i class="fa fa-solid fa-circle-info"></i> Details</a><span> |</span>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CourseId" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-solid fa-trash"></i> Delete</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.CourseId"><i class="fa fa-solid fa-circle-info"></i> Details</a>
+                        }
+                    }
+
                 </td>
             </tr>
         }

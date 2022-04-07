@@ -50,6 +50,7 @@ namespace EntV.Controllers
         }
 
         // GET: CoursesController/Create
+        [Authorize(Roles = "Education, Administrator")]
         public ActionResult Create()
         {
             var deps = _depRepo.FindAll();
@@ -65,6 +66,7 @@ namespace EntV.Controllers
         // POST: CoursesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Education, Administrator")]
         public ActionResult Create(CourseViewModel data)
         {
             try
@@ -90,6 +92,7 @@ namespace EntV.Controllers
         }
 
         // GET: CoursesController/Edit/5
+        [Authorize(Roles = "Education, Administrator")]
         public ActionResult Edit(int id)
         {
             if (!_repo.Exists(id))
@@ -111,6 +114,7 @@ namespace EntV.Controllers
         // POST: CoursesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Education, Administrator")]
         public ActionResult Edit(CourseViewModel data)
         {
             try
@@ -136,6 +140,7 @@ namespace EntV.Controllers
         }
 
         // GET: CoursesController/Delete/5
+        [Authorize(Roles = "Education, Administrator")]
         public ActionResult Delete(int id)
         {
             var course = _repo.FindById(id);

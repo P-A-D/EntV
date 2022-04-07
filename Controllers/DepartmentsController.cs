@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace EntV.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator, Education")]
     public class DepartmentsController : Controller
     {
         private readonly IDepartmentRepository _repo;
@@ -45,6 +45,7 @@ namespace EntV.Controllers
         }
 
         // GET: DepartmentsController/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -53,6 +54,7 @@ namespace EntV.Controllers
         // POST: DepartmentsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create(DepartmentViewModel data)
         {
             try
@@ -78,6 +80,7 @@ namespace EntV.Controllers
         }
 
         // GET: DepartmentsController/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
             if (!_repo.Exists(id))
@@ -92,6 +95,7 @@ namespace EntV.Controllers
         // POST: DepartmentsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id, DepartmentViewModel data)
         {
             try
@@ -117,6 +121,7 @@ namespace EntV.Controllers
         }
 
         // GET: DepartmentsController/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {
             var department = _repo.FindById(id);

@@ -1,4 +1,8 @@
 ﻿@model EntV.Models.DepartmentViewModel
+@using EntV.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Member> SignInManager
+@inject UserManager<Member> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -18,7 +22,13 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.DepartmentId">Edit</a> |
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("Administrator"))
+        {
+            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.DepartmentId">Edit</a><span> |</span>
+        }
+    }
     <a asp-action="Index" class="btn btn-outline-dark">Back to List</a>
 </div>
 
