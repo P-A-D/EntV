@@ -2,4 +2,4 @@
 - create new course: drop down list for departments (done)
 - make a universal date picker
 - Change views of Student and Education users in order to not see the "Add new", "Edit", and "Delete" buttons in departments and
-  enrollmentTypes pages.
+  enrollmentTypes pages. (done)

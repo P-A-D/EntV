@@ -21,4 +21,4 @@ Steps to take:
 	privare readonly IDataClassRepository _repo;
 	-Create the corresponding constructor:
 	public CNameController: Controller(IDataClassRepository _repo, IMapper mapper){_repo = repo; 	_mapper = mapper;}
-
+6- Carry out controller checks and so on later on.
